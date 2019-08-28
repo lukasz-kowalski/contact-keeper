@@ -5,7 +5,10 @@
   "main": "index.js",
   "scripts": {
     "start": "node server.ts",
-    "server": "nodemon server.ts"
+    "server": "nodemon server.ts",
+    "client": "npm start --prefix client",
+    "client-install": "npm install --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "keywords": [],
   "author": "",
