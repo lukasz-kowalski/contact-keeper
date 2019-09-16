@@ -8,12 +8,16 @@
     "server": "nodemon server.ts",
     "client": "npm start --prefix client",
     "client-install": "npm install --prefix client",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@types/react-router-dom": "^4.3.5",
+    "@types/react-transition-group": "^4.2.2",
+    "@types/uuid": "^3.4.5",
     "bcryptjs": "^2.4.3",
     "config": "^3.2.2",
     "express": "^4.17.1",

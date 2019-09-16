@@ -28,7 +28,7 @@ router.get("/", authMiddleware, async (req: Request, res: Response) => {
     res.json(user);
   } catch (err) {
     console.error(err.message);
-    res.status(500).json({ errors: ["Server error"] });
+    res.status(500).json({ errors: [{ msg: "Server error" }] });
   }
 });
 
@@ -53,13 +53,17 @@ router.post(
     try {
       let user: IUser | null = await User.findOne({ email });
       if (!user) {
-        return res.status(400).json({ errors: ["Invalid credentials"] });
+        return res
+          .status(400)
+          .json({ errors: [{ msg: "Invalid credentials" }] });
       }
 
       const isMatch: boolean = await bcrypt.compare(password, user.password);
 
       if (!isMatch) {
-        return res.status(400).json({ errors: ["Invalid credentials"] });
+        return res
+          .status(400)
+          .json({ errors: [{ msg: "Invalid credentials" }] });
       }
 
       const payload = {
@@ -79,7 +83,7 @@ router.post(
       jwt.sign(payload, config.get("jwtSecret"), options, callback);
     } catch (err) {
       console.error(err.message);
-      res.status(500).json({ errors: ["Server Error"] });
+      res.status(500).json({ errors: [{ msg: "Server Error" }] });
     }
   }
 );
